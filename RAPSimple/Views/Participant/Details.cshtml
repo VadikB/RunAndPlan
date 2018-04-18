@@ -1,0 +1,54 @@
+﻿@model RAPSimple.Models.Participant
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Подробности</h2>
+<div>
+    <h4>Участник</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.Files.Any(f => f.FileType == FileType.Avatar))
+        {
+            <dt>
+                Фото
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" />
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstMidName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstMidName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Details)*@
+            @Html.Raw("<pre>" + Html.Encode(Model.Details) + "/pre");
+        </dd>
+        <dd>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
